@@ -1,0 +1,333 @@
+@media screen and (min-width: 1400px) {
+    .container {
+        max-width: 1346px;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    h1 {
+        font-size: 50px;
+    }
+    h2 {
+    font-size: 44px;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    h4 {
+        font-size: 20px;
+    }
+    .py_100 {
+        padding: 80px 0;
+    }
+    .testimonial-sec .testimonial-upr-content .testimonial-head {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    header.hearder_wrapper button.navbar-toggler:focus {
+        box-shadow: none;
+    }
+    header.hearder_wrapper button.navbar-toggler:focus {
+        box-shadow: none;
+    }
+    header.hearder_wrapper .navbar-collapse {
+        transition: 0.4s ease-in-out;
+        background: #fff;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: calc(100% - 0px);
+        padding: 20px;
+    }
+    header.hearder_wrapper .navbar>.container {
+        position: relative;
+    }
+    header.hearder_wrapper ul.contact {
+        padding-left: 13px;
+        margin-top: 20px;
+    }
+    h1 {
+        font-size: 44px;
+    }
+    h2 {
+    font-size: 40px;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    h4 {
+        font-size: 20px;
+    }
+    .py_100 {
+        padding: 80px 0;
+    }
+    .testimonial-sec .testimonial-upr-content .testimonial-head {
+        max-width: 500px;
+    }
+    .campaign-upr-content .campaign-head {
+        max-width: 750px;
+    }
+    .testimonial-sec .testimonial-upr-content .testimonial-head {
+        max-width: 440px;
+    }
+    
+}
+
+@media screen and (max-width: 991px) {
+    h1 {
+        font-size: 44px;
+    }
+    h2 {
+    font-size: 40px;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    h4 {
+        font-size: 20px;
+    }
+    .py_100 {
+        padding: 60px 0;
+    }
+    .testimonial-sec .testimonial-upr-content .testimonial-head {
+        max-width: 500px;
+    }
+    .campaign-upr-content .campaign-head {
+        max-width: 750px;
+    }
+    .testimonial-sec .testimonial-upr-content .testimonial-head {
+        max-width: 440px;
+    }
+    .banner-right-content .cta-btn {
+        margin-top: 20px;
+    }
+    .banner-btm-content {
+        margin-top: 40px;
+    }
+    .banner-counter {
+        margin-top: 40px;
+    }
+    .campaign-box .campaign-img img {
+        width: 100%;
+    }
+    .campaign-box {
+        height: auto;
+        margin-bottom: 30px;
+    }
+    .category-content-right {
+        margin-top: 30px;
+    }
+    .testimonial-box {
+        margin-bottom: 30px;
+    }
+    .testimonial-sec-content {
+        margin-bottom: 20px;
+    }
+    .banner-counter .row {
+        row-gap: 20px;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+footer.site-ftr .newsletter-ftr {
+    flex-direction: column;
+    padding: 30px 0 20px 0;
+    gap: 10px;
+}
+footer.site-ftr .links-list-bx {
+    margin: 40px 0;
+}
+header.hearder_wrapper {
+    position: relative;
+}
+header.hearder_wrapper ul.contact li.search-bar {
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+}
+header.hearder_wrapper ul.contact li.search-bar button.search-btn {
+    margin-left: 0;
+}
+header.hearder_wrapper ul.contact {
+    flex-direction: column;
+}
+h1 {
+    font-size: 40px;
+}
+h2 {
+font-size: 32px;
+}
+h3 {
+    font-size: 20px;
+}
+h4 {
+    font-size: 18px;
+}
+.py_100 {
+    padding: 40px 0;
+}
+.testimonial-sec .testimonial-upr-content .testimonial-head {
+    max-width: 500px;
+}
+.campaign-upr-content .campaign-head {
+    max-width: 750px;
+}
+.testimonial-sec .testimonial-upr-content .testimonial-head {
+    max-width: 440px;
+}
+.banner-right-content .cta-btn {
+    margin-top: 20px;
+}
+.banner-btm-content {
+    margin-top: 20px;
+}
+.banner-counter {
+    margin-top: 20px;
+}
+.campaign-box .campaign-img img {
+    width: 100%;
+}
+.campaign-box {
+    height: auto;
+    margin-bottom: 20px;
+}
+.category-content-right {
+    margin-top: 20px;
+}
+.testimonial-box {
+    margin-bottom: 20px;
+}
+.testimonial-sec-content {
+    margin-bottom: 0px;
+}
+.testimonial-box .testimonial-text {
+    margin-bottom: 30px;
+}
+.banner-right-content {
+    margin-top: 0;
+}
+.campaign-box .campaign-text h3 {
+    margin-bottom: 15px;
+}
+.about-us-content-right {
+    margin-top: 30px;
+}
+.category-content-right>.row {
+    row-gap: 20px;
+}
+.testimonial-sec .testimonial-upr-content {
+    margin-bottom: 20px;
+}
+.testimonial-box {
+    padding: 25px 15px;
+}
+.campaign-upr-content {
+    gap: 20px;
+    margin-bottom: 30px;
+}
+}
+
+@media screen and (max-width: 575px) {
+    footer.site-ftr .newsletter-ftr {
+        flex-direction: column;
+        padding: 20px 0 20px 0;
+        gap: 10px;
+    }
+    footer.site-ftr .links-list-bx {
+        margin: 30px 0;
+    }
+    footer.site-ftr .footer-btm .cpy-rt {
+        /* text-align: -webkit-center; */
+        gap: 20px;
+        /* justify-content: center; */
+        padding: 12px 0;
+    }
+    .about-goal {
+        padding: 20px 15px;
+    }
+    h1 {
+        font-size: 34px;
+    }
+    h2 {
+    font-size: 28px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+    h4 {
+        font-size: 16px;
+    }
+    .py_100 {
+        padding: 30px 0;
+    }
+    .testimonial-sec .testimonial-upr-content .testimonial-head {
+        max-width: 500px;
+    }
+    .campaign-upr-content .campaign-head {
+        max-width: 750px;
+    }
+    .testimonial-sec .testimonial-upr-content .testimonial-head {
+        max-width: 440px;
+    }
+    .banner-right-content .cta-btn {
+        margin-top: 20px;
+    }
+    .banner-btm-content {
+        margin-top: 20px;
+    }
+    .banner-counter {
+        margin-top: 20px;
+    }
+    .campaign-box .campaign-img img {
+        width: 100%;
+    }
+    .campaign-box {
+        height: auto;
+        margin-bottom: 20px;
+    }
+    .category-content-right {
+        margin-top: 20px;
+    }
+    .testimonial-box {
+        margin-bottom: 20px;
+    }
+    .testimonial-sec-content {
+        margin-bottom: 0px;
+    }
+    .testimonial-box .testimonial-text {
+        margin-bottom: 20px;
+    }
+    .banner-right-content {
+        margin-top: 0;
+    }
+    .campaign-box .campaign-text h3 {
+        margin-bottom: 15px;
+    }
+    .about-us-content-right {
+        margin-top: 20px;
+    }
+    .category-content-right>.row {
+        row-gap: 20px;
+    }
+    .testimonial-sec .testimonial-upr-content {
+        margin-bottom: 20px;
+    }
+    .testimonial-box {
+        padding: 20px 15px;
+    }
+    .campaign-upr-content {
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .testimonial-sec .testimonial-upr-content {
+        gap: 20px;
+    }
+    .category-step-box {
+        padding: 20px 15px;
+    }
+}
