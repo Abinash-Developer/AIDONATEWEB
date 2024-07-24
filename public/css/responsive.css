@@ -129,6 +129,9 @@
     .banner-counter .row {
         row-gap: 20px;
     }
+    .account-tab {
+        padding-top: 50px;
+    }
 
 }
 

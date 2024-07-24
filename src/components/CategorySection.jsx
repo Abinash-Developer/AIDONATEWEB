@@ -1,9 +1,5 @@
-import { useState } from "react";
-import axios from "axios";
-const CategorySection = async () => {
-  const [category,setCategory] = useState([]);
-  const categoyResult = await axios.get(`${process.env.REACT_APP_API_URL}/admin/get_category`);
-  console.log('categoyResult = ', categoyResult);
+
+const CategorySection = () => {
   return (
     <>
       <section className="category-sec py_100">

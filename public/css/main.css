@@ -757,6 +757,50 @@ section.login-sec {
     margin-top: 80px;
 }
 
+
+
+
+/* My account signup page */
+
+.account-tab{
+    padding-top: 100px;
+}
+.account-tabs {
+    text-align: center;
+}
+.account-tabs .nav {
+    justify-content: center;
+    border: 1px solid #009245;
+    display: inline-flex;
+    border-radius: 30px;
+}
+.account-tabs .nav li.nav-item .nav-link.active {
+    background: #009245;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: 700;
+}
+.account-tabs .nav li.nav-item .nav-link {
+    padding: 12px 50px;
+    color: #000;
+    font-size: 18px;
+    border-radius: 30px;
+}
+.account-tab .account-head {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.account-tab .account-head h2 {
+    text-align: center;
+}
+
+section.sign-account-sec .login-wrapper input.form-control {
+    height: auto;
+}
+.login-wrapper .sign-form button:hover {
+    color: #fff;
+}
+
 @media screen and (max-width: 767px) {
 
     section.login-sec {

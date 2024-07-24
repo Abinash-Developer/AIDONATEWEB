@@ -6,6 +6,14 @@ $(window).scroll(function(){
     }
 });
 
+$(document).ready(function () {
+    $('input[name="intervaltype"]').click(function () {
+        $(this).tab('show');
+        $(this).removeClass('active');
+    });
+  })
+  
+
 
 // counter vanilaa js
 
@@ -110,4 +118,5 @@ $( document ).ready(function() {
       }
     });
 });
-  
+
+

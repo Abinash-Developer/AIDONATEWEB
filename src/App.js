@@ -8,6 +8,7 @@ import NoMatch from "./pages/NoMatch";
 import ProtectedRoute from "./authantication/ProtectedRoute";
 import Userdashboard from "./pages/users/Userdashboard";
 import Home from "./pages/Home";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route element={<ProtectedRoute requiredRole="user" />}>
               <Route path="/user-account" element={<Userdashboard />} />
             </Route>
