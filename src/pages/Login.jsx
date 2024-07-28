@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate, Link,Navigate  } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AuthContext } from "../authantication/AuthProvider";
@@ -99,7 +99,9 @@ const Login = () => {
                 ) : null}
               </div>
               <div className="form-group">
-                <span>Forget your password</span>
+                {/* <span data-bs-toggle="modal" data-bs-target="#exampleModal"> */}
+                 <Link to ="/forgot-password">Forget your password</Link>
+                {/* </span> */}
               </div>
               <div className="checkbox_box">
                 <input type="checkbox" id="html" />
@@ -135,7 +137,7 @@ const Login = () => {
                 <p>Don’t have an account?</p>
               </div>
               <div className="btn-play">
-                <Link to="">Sign up</Link>
+                <Link to="/register">Sign up</Link>
               </div>
             </form>
           </div>

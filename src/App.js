@@ -9,6 +9,9 @@ import ProtectedRoute from "./authantication/ProtectedRoute";
 import Userdashboard from "./pages/users/Userdashboard";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import Forget from "./pages/Forgot";
+import Otp from "./pages/Otp";
+import ChangePassword from "./pages/ChangePassword";
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<Forget />} />
+            <Route path="/varify-otp" element={<Otp />} />
+            <Route path="/change-password" element={<ChangePassword />} />
             <Route element={<ProtectedRoute requiredRole="user" />}>
               <Route path="/user-account" element={<Userdashboard />} />
             </Route>

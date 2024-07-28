@@ -577,6 +577,7 @@ footer.site-ftr .newsletter-ftr .form-box{
     line-height: 24px;
     text-align: right;
     color: #111111;
+    cursor: pointer;
 }
 .form-group.password {
     margin-bottom: 10px;
