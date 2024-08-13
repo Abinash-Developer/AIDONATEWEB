@@ -71,12 +71,14 @@ const NgoRegister = () => {
     pinCode: Yup.string()
       .matches(/^[0-9]{6}$/, "PIN Code must be exactly 6 digits")
       .required("PIN Code is required"),
-    document1: Yup.mixed()
-      .required("Document 1 is required")
-      .test(
-        "fileSize",
-        "File size too large",
-        (value) => !value || (value && value.size <= 5 * 1024 * 1024)
+    documents: Yup.array()
+      .min(1, "At least one document is required")
+      .of(
+        Yup.mixed().test(
+          "fileSize",
+          "File size too large",
+          (value) => !value || (value && value.size <= 5 * 1024 * 1024)
+        )
       ),
   });
   const ngoFormik = useFormik({
@@ -91,14 +93,34 @@ const NgoRegister = () => {
       district: "",
       pinCode: "",
       role: "ngo",
-      ngoFiles: "img.pmg",
+      documents: [],
     },
     validationSchema: ngoSignupSchema,
     onSubmit: async (values) => {
       try {
+        const formData = new FormData();
+        formData.append("ngoGovtId", values.ngoGovtId);
+        formData.append("ngoName", values.ngoName);
+        formData.append("email", values.email);
+        formData.append("phone", values.phone);
+        formData.append("password", values.password);
+        formData.append("state", values.state);
+        formData.append("district", values.district);
+        formData.append("pinCode", values.pinCode);
+        formData.append("role", values.role);
+
+        // Append each document to formData
+        values.documents.forEach((file) => {
+          formData.append("documents", file);
+        });
         const response = await axios.post(
-          `${process.env.REACT_APP_API_URL}/users/sign_up`,
-          values
+          `${process.env.REACT_APP_API_URL}/users/ngo_register`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
         );
         Swal.fire({
           title: "Success!",
@@ -125,7 +147,6 @@ const NgoRegister = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/v1/city/${e.target.value}`
       );
-      console.log(response?.data?.data);
       setCity(response?.data?.data || []);
     } catch (err) {
       setError("Error fetching cities");
@@ -318,22 +339,23 @@ const NgoRegister = () => {
           </div>
           <div className="col-md-12" id="ngo-files-one">
             <label>
-              Document 1 <span className="text-danger">*</span>
+              Official Documents<span className="text-danger">*</span>
             </label>
             <input
               className="form-control aid-input"
               type="file"
               id="ngo_docOne"
-              name="document1"
+              name="documents"
+              multiple
               onChange={(event) =>
                 ngoFormik.setFieldValue(
-                  "document1",
-                  event.currentTarget.files[0]
+                  "documents",
+                  Array.from(event.currentTarget.files)
                 )
               }
             />
-            {ngoFormik.errors.document1 && ngoFormik.touched.document1 && (
-              <div className="text-danger">{ngoFormik.errors.document1}</div>
+            {ngoFormik.errors.documents && ngoFormik.touched.documents && (
+              <div className="text-danger">{ngoFormik.errors.documents}</div>
             )}
           </div>
           <div className="col-md-12 mt-5 px-2">

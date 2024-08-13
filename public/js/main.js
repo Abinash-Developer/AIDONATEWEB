@@ -12,6 +12,11 @@ $(document).ready(function () {
         $(this).removeClass('active');
     });
   })
+
+  $('.user-img').click(function() {
+    $(this).toggleClass('active');
+    $('.login-type').toggle();
+});
   
 
 
@@ -118,5 +123,12 @@ $( document ).ready(function() {
       }
     });
 });
+
+
+// $('ul.login-type').on('click', function(){
+//     $(this).addClass('current');
+//     $('ul.login-type.current').removeClass('current');
+// });
+
 
 

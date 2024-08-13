@@ -4,6 +4,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+
 const UserRegister = () => {
   const navigate = useNavigate();
   const [state, setState] = useState([]);
@@ -11,7 +13,7 @@ const UserRegister = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData() {  
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/v1/state`
@@ -51,10 +53,7 @@ const UserRegister = () => {
       .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
       .matches(/[a-z]/, "Password must contain at least one lowercase letter")
       .matches(/[0-9]/, "Password must contain at least one number")
-      .matches(
-        /[^A-Za-z0-9]/,
-        "Password must contain at least one special character"
-      )
+      .matches(/[^A-Za-z0-9]/, "Password must contain at least one special character")
       .required("Password is required"),
 
     confirmPassword: Yup.string()
@@ -90,20 +89,19 @@ const UserRegister = () => {
       state: "",
       district: "",
       pinCode: "",
-      role: "user",
+      role: "user"
     },
     validationSchema: userSignupSchema,
     onSubmit: async (values) => {
+      console.log(values);
       try {
         const response = await axios.post(
           `${process.env.REACT_APP_API_URL}/users/sign_up`,
-          {
-            values,
-          }
+           values
         );
         Swal.fire({
           title: "Success!",
-          text: "You have register successfully.",
+          text: "You have registered successfully.",
           icon: "success",
           confirmButtonText: "OK",
         }).then(() => {
@@ -112,7 +110,7 @@ const UserRegister = () => {
       } catch (error) {
         Swal.fire({
           title: "Error!",
-          text: error.response?.data?.message,
+          text: error.response?.data?.message || error.message,
           icon: "error",
           confirmButtonText: "Try Again",
         });
@@ -126,13 +124,18 @@ const UserRegister = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/v1/city/${e.target.value}`
       );
-      console.log(response?.data?.data);
       setCity(response?.data?.data || []);
     } catch (err) {
       setError("Error fetching cities");
       console.error(err);
     }
   };
+
+  const handleAddressChange = (event) => {
+    const address = event.target.value;
+    formik.setFieldValue("ngo_address", address);
+  };
+
   return (
     <>
       <form className="sign-form user-signup" onSubmit={formik.handleSubmit}>
@@ -232,10 +235,7 @@ const UserRegister = () => {
               <label>
                 Confirm Password <span className="text-danger">*</span>
               </label>
-              <span
-                id="confirm_error_msg"
-                className="small fw-bold text-muted"
-              />
+              <span id="confirm_error_msg" className="small fw-bold text-muted" />
             </div>
             <input
               type="password"
@@ -272,7 +272,6 @@ const UserRegister = () => {
               id="state"
               name="state"
               value={formik.values.state}
-              // onChange={formik.handleChange}
               onChange={handleChange}
               onBlur={formik.handleBlur}
             >
@@ -310,6 +309,35 @@ const UserRegister = () => {
               <div className="error">{formik.errors.district}</div>
             ) : null}
           </div>
+          {/* <div className="col-md-12">
+            <label>
+              NGO Address <span className="text-danger">*</span>
+            </label>
+            {isLoaded && (
+              <Autocomplete
+                onLoad={(autocomplete) => setAutocomplete(autocomplete)}
+                onPlaceChanged={() => {
+                  const place = autocomplete.getPlace();
+                  if (place.geometry) {
+                    const address = place.formatted_address;
+                    formik.setFieldValue("ngo_address", address);
+                  }
+                }}
+              >
+                <input
+                  type="text"
+                  className="form-control aid-input"
+                  id="ngo_address"
+                  name="ngo_address"
+                  value={formik.values.ngo_address}
+                  onChange={handleAddressChange}
+                />
+              </Autocomplete>
+            )}
+            {formik.touched.ngo_address && formik.errors.ngo_address ? (
+              <div className="error">{formik.errors.ngo_address}</div>
+            ) : null}
+          </div> */}
           <div className="col-md-12">
             <label>
               PIN Code <span className="text-danger">*</span>
@@ -337,4 +365,5 @@ const UserRegister = () => {
     </>
   );
 };
+
 export default UserRegister;

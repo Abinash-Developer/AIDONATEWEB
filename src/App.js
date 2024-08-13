@@ -6,12 +6,14 @@ import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import ProtectedRoute from "./authantication/ProtectedRoute";
-import Userdashboard from "./pages/users/Userdashboard";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Forget from "./pages/Forgot";
 import Otp from "./pages/Otp";
 import ChangePassword from "./pages/ChangePassword";
+import Explore from "./pages/Explore";
+import Dashboard from "./pages/Dashboard";
+import CommingSoon from "./pages/CommingSoon";
 
 function App() {
   return (
@@ -21,15 +23,19 @@ function App() {
            <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forgot-password" element={<Forget />} />
-            <Route path="/varify-otp" element={<Otp />} />
-            <Route path="/change-password" element={<ChangePassword />} />
+            <Route path="/explore" element={<CommingSoon />} />
+            <Route path="/login" element={<CommingSoon />} />
+            <Route path="/register" element={<CommingSoon />} />
+            <Route path="/forgot-password" element={<CommingSoon />} />
+            <Route path="/varify-otp" element={<CommingSoon />} />
+            <Route path="/change-password" element={<CommingSoon />} />
             <Route element={<ProtectedRoute requiredRole="user" />}>
-              <Route path="/user-account" element={<Userdashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Route>
-            <Route path="*" element={<NoMatch />} />
+            <Route element={<ProtectedRoute requiredRole="ngo" />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
+            <Route path="*" element={<CommingSoon />} />
           </Routes>
         </AuthProvider>
         <Footer />

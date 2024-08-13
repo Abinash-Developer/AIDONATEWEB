@@ -4,12 +4,13 @@ import { AuthContext } from './AuthProvider';
 
 const ProtectedRoute = ({ requiredRole }) => {
   const { isAuthenticated, userRole } = useContext(AuthContext);
-  
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
 
   if (isAuthenticated && userRole !== requiredRole) {
+    console.log("isAuthenticated = ",isAuthenticated);
+    console.log("userRole = ",userRole);
     return <Navigate to="/" />;
   }
 

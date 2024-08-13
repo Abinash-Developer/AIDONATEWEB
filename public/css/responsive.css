@@ -233,6 +233,20 @@ h4 {
     gap: 20px;
     margin-bottom: 30px;
 }
+.explore-sec .explore-head {
+    flex-direction: column;
+    align-items: flex-start;
+}
+section.explore-sec {
+    padding: 50px 0 50px 0;
+}
+header.hearder_wrapper ul.contact li.user-img ul.login-type {
+    left: 110px;
+    top: 0;
+}
+header.hearder_wrapper.sticky-head nav.navbar {
+    padding: 0;
+}
 }
 
 @media screen and (max-width: 575px) {
@@ -332,5 +346,20 @@ h4 {
     }
     .category-step-box {
         padding: 20px 15px;
+    }
+    .explore-btm-filter {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    .explore-sec .explore-head .explore-head-filter .explore-head-price-date {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .explore-btm-filter-categ ul li {
+        padding: 10px;
+    }
+    .explore-sec .explore-head .explore-head-filter .explore-head-price-date ul li {
+        padding: 10px;
     }
 }
