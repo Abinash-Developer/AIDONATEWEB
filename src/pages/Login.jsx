@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, Link, Navigate } from "react-router-dom";
@@ -8,6 +8,13 @@ import { AuthContext } from "../authantication/AuthProvider";
 const Login = () => {
   const navigate = useNavigate();
   const { login, isAuthenticated } = useContext(AuthContext);
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Please enter valid email address")
@@ -81,13 +88,13 @@ const Login = () => {
                   <div className="pass-content">
                     <label>Password</label>
                   </div>
-                  <div className="pass-img">
-                    <img src="img/hide.png" alt="" />
-                    <span>Hide</span>
+                   <div className="pass-img" onClick={togglePasswordVisibility}>
+                    <img src={showPassword ? "img/hide.png" : "img/hide.png"} alt="" />
+                    <span>{showPassword ? "Hide" : "Show"}</span>
                   </div>
                 </div>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   className="form-control"
                   name="password"
                   value={formik.values.password}
@@ -113,7 +120,7 @@ const Login = () => {
               <div className="first_line text">
                 <span>OR</span>
               </div>
-              <div className="apply-btn">
+              {/* <div className="apply-btn">
                 <div className="btn-play">
                   <Link to="">
                     <img src="img/google.png" alt="" />
@@ -132,7 +139,7 @@ const Login = () => {
                     Continue with Apple
                   </Link>
                 </div>
-              </div>
+              </div> */}
               <div className="account-txt">
                 <p>Don’t have an account?</p>
               </div>

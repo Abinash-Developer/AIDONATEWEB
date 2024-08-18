@@ -1,3 +1,6 @@
+import React from 'react';
+import CountUp from 'react-countup';
+
 const HomeBanner = () => {
   return (
     <>
@@ -8,16 +11,16 @@ const HomeBanner = () => {
               <div className="col-lg-6">
                 <div className="banner-left-content">
                   <h1>
-                    <span className="grn">Fundrasing</span> for the people and
-                    causes you care.
+                    <span className="grn">Fundraising</span> for the people and
+                    causes you care about.
                   </h1>
                 </div>
               </div>
               <div className="col-lg-5 offset-lg-1">
                 <div className="banner-right-content">
                   <p>
-                    Take Advatage of This Amazing Exclusive Offer Don’t Miss
-                    This Opportunity For Your Non Profit.
+                    Take advantage of this amazing exclusive offer. Don’t miss
+                    this opportunity for your non-profit.
                   </p>
                   <div className="cta-btn">
                     <a className="cta-grn" href="#">
@@ -30,7 +33,7 @@ const HomeBanner = () => {
           </div>
           <div className="banner-btm-content">
             <div className="banner-img">
-              <img src="img/bann-img.png" className="img-fluid" />
+              <img src="img/bann-img.png" className="img-fluid" alt="Banner" />
             </div>
             <div className="banner-counter">
               <div className="wrapper">
@@ -38,13 +41,9 @@ const HomeBanner = () => {
                   <div className="col-lg-3 col-md-6">
                     <div className="counter col_fourth">
                       <div className="counter-text">
-                        <h2 className="grn currecy-rs" />
-                        <h2
-                          className="timer grn count-title count-number"
-                          data-to={594}
-                          data-speed={1700}
-                        >
-                          <span>+</span>
+                        {/* <h2 className="grn currecy-rs">₹</h2> */}
+                        <h2 className="timer grn count-title count-number">
+                          <CountUp end={0} />
                         </h2>
                         <h2 className="grn currnt-sgn">+</h2>
                       </div>
@@ -55,11 +54,9 @@ const HomeBanner = () => {
                     <div className="counter col_fourth">
                       <div className="counter-text">
                         <h2 className="grn currecy-rs">₹</h2>
-                        <h2
-                          className="timer grn count-title count-number"
-                          data-to={49}
-                          data-speed={1700}
-                        />
+                        <h2 className="timer grn count-title count-number">
+                          <CountUp end={0}/>
+                        </h2>
                         <h2 className="grn currnt-sgn">M</h2>
                       </div>
                       <h3 className="count-text">Money Donated</h3>
@@ -68,26 +65,22 @@ const HomeBanner = () => {
                   <div className="col-lg-3 col-md-6">
                     <div className="counter col_fourth">
                       <div className="counter-text">
-                        <h2 className="grn currecy-rs" />
-                        <h2
-                          className="timer grn count-title count-number"
-                          data-to={34}
-                          data-speed={1700}
-                        />
+                        {/* <h2 className="grn currecy-rs"></h2> */}
+                        <h2 className="timer grn count-title count-number">
+                          <CountUp end={0} />
+                        </h2>
                         <h2 className="grn currnt-sgn">+</h2>
                       </div>
-                      <h3 className="count-text">Active Compaigns</h3>
+                      <h3 className="count-text">Active Campaigns</h3>
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-6">
                     <div className="counter col_fourth">
                       <div className="counter-text">
                         <h2 className="grn currecy-rs">₹</h2>
-                        <h2
-                          className="timer grn count-title count-number"
-                          data-to={34}
-                          data-speed={1700}
-                        />
+                        <h2 className="timer grn count-title count-number">
+                          <CountUp end={0} />
+                        </h2>
                         <h2 className="grn currnt-sgn">M</h2>
                       </div>
                       <h3 className="count-text">Charity in last year</h3>
@@ -102,4 +95,5 @@ const HomeBanner = () => {
     </>
   );
 };
+
 export default HomeBanner;

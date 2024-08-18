@@ -10,7 +10,6 @@ const AuthProvider = ({ children }) => {
   const [userRole, setUserRole] = useState(()=>{
     return localStorage.getItem("role") || '';
   });
-console.log("hjfjsfhj= ",userRole)
   const login = (user_details) => {
     localStorage.setItem("logged_in",true);
     localStorage.setItem("role", user_details?.data?.data?.role);

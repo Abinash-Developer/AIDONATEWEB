@@ -31,7 +31,7 @@ text-align: left;
 }
 
 h2 span {
-    color: #E10916;
+    color: #009245;
 }
 
 /* h3 {
@@ -217,7 +217,7 @@ header.hearder_wrapper ul.contact .icon-input i {
 }
 header.hearder_wrapper.sticky-head {
     position: fixed;
-    top: 5px;
+    top: 0px;
     background: #fff;
     box-shadow: 0px 0px 24px 0px #303E8F17;
     width: 100%;
@@ -882,6 +882,14 @@ section.login-sec {
     text-align: center;
 }
 
+section.sign-account-sec .login-wrapper select.form-select {
+    border: 1px solid #66666659;
+    /* height: 100%; */
+    padding: 19px 10px;
+    border-radius: 12px;
+    background: transparent;
+    appearance: auto;
+}
 section.sign-account-sec .login-wrapper input.form-control {
     height: auto;
 }
@@ -1098,4 +1106,11 @@ section.sign-account-sec .login-wrapper input.form-control {
 
 .coming-soon-sec .inner-banner-sec-content h1 {
     text-align: center;
+}
+
+
+
+/* Developer css */
+.error{
+    color:red;
 }

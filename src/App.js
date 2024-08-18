@@ -14,31 +14,36 @@ import ChangePassword from "./pages/ChangePassword";
 import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
 import CommingSoon from "./pages/CommingSoon";
+import PasswordProtect from "./components/PasswordProtect";
 
 function App() {
   return (
     <>
       <Router>
         <AuthProvider>
+          <PasswordProtect>
            <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/explore" element={<CommingSoon />} />
-            <Route path="/login" element={<CommingSoon />} />
-            <Route path="/register" element={<CommingSoon />} />
-            <Route path="/forgot-password" element={<CommingSoon />} />
-            <Route path="/varify-otp" element={<CommingSoon />} />
-            <Route path="/change-password" element={<CommingSoon />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<Forget />} />
+            <Route path="/varify-otp" element={<Otp />} />
+            <Route path="/change-password" element={<ChangePassword />} />
             <Route element={<ProtectedRoute requiredRole="user" />}>
               <Route path="/dashboard" element={<Dashboard />} />
             </Route>
             <Route element={<ProtectedRoute requiredRole="ngo" />}>
               <Route path="/dashboard" element={<Dashboard />} />
             </Route>
-            <Route path="*" element={<CommingSoon />} />
+            <Route path="*" element={<NoMatch />} />
           </Routes>
+          <Footer />
+          </PasswordProtect>
+         
         </AuthProvider>
-        <Footer />
+       
       </Router>
     </>
   );
