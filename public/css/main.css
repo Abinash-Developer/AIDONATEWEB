@@ -1114,3 +1114,25 @@ section.sign-account-sec .login-wrapper input.form-control {
 .error{
     color:red;
 }
+a.explore_donate_btn {
+    color: #FDFDFD !important;
+    font-size: 15px;
+    font-weight: 400;
+    background: #009245;
+    padding: 8px 17px;
+    display: inline-block;
+    font-family: 'Inter';
+    border-radius: 1 0 0px 0;
+    border-radius: 50px;
+}
+button.explore_donate_btn {
+    color: #FDFDFD !important;
+    font-size: 15px;
+    font-weight: 400;
+    background: #009245;
+    padding: 8px 17px;
+    display: inline-block;
+    font-family: 'Inter';
+    border-radius: 1 0 0px 0;
+    border-radius: 50px;
+}
