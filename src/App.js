@@ -13,8 +13,9 @@ import Otp from "./pages/Otp";
 import ChangePassword from "./pages/ChangePassword";
 import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
-import CommingSoon from "./pages/CommingSoon";
+// import CommingSoon from "./pages/CommingSoon";
 import PasswordProtect from "./components/PasswordProtect";
+import Thankyou from "./pages/Thankyou";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
+            <Route path="/thank-you" element={<Thankyou />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<Forget />} />

@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import { fetchStates, fetchCities } from "../utils/dataFetchers";
+import { fetchStates } from "../utils/dataFetchers";
+import Thankyou from "./Thankyou";
+import { useNavigate } from "react-router-dom";
 
 const Explore = () => {
+  const navigate = useNavigate();
   const [explore, setExplore] = useState([]);
   const [state, setState] = useState([]);
   const [city, setCity] = useState([]);
-  // const [selectedState, setSelectedState] = useState("");
+
 
   useEffect(() => {
     // Fetch NGO
@@ -37,7 +40,6 @@ const Explore = () => {
     }
   };
 
-
   //get cities
   const handleChange = async (e) => {
     formik.handleChange(e);
@@ -49,10 +51,6 @@ const Explore = () => {
     } catch (err) {
       console.error(err);
     }
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submit Button Clicked");
   };
   // Validation for user payment with register
   const userSignupSchema = Yup.object().shape({
@@ -106,67 +104,33 @@ const Explore = () => {
       state: "",
       district: "",
       pinCode: "",
-      password: ""
+      password: "",
     },
     validationSchema: userSignupSchema,
     onSubmit: async (values) => {
-      console.log("Form submitted"); // Add this line to debug
-    alert("Form is being submitted!"); // This should trigger
-      try {
-        const registerResponse = await axios.post(
-          `${process.env.REACT_APP_API_URL}/users/sign_up`,
-           values
-        );
-        // console.log(createOrderResponse);
-        // return;
-        const createOrderResponse = await axios.post(
-          `${process.env.REACT_APP_API_URL}/users/create-order`,
-          { amount: values.amount }
-        );
-
-        const options = {
-          key: "rzp_test_g4ALmVfn2IXdaU",
-          amount: values.amount * 100,
-          currency: "INR",
-          name: "NGO Donation",
-          description: "Thank you for your generous donation",
-          order_id: createOrderResponse.data.orderId,
-          handler: function (response) {
-            // Handle successful payment here
-          },
-          prefill: {
-            name: `${values.firstName} ${values.lastName}`,
-            email: values.email,
-            contact: values.phone,
-          },
-          notes: {
-            address: "aidonate",
-          },
-          theme: {
-            color: "#3399cc",
-          },
-        };
-        const rzp = new window.Razorpay(options);
-        rzp.open();
-      } catch (error) {
-        console.log("Error in payment: ", error);
-      }
+      console.log("Not work");
     },
   });
   const handleNormalSubmit = async (e) => {
     e.preventDefault();
+   
     try {
+      // Register the user
       const registerResponse = await axios.post(
         `${process.env.REACT_APP_API_URL}/users/sign_up`,
         formik.values
       );
-      console.log(createOrderResponse);
-      return;
+      localStorage.setItem('userID',registerResponse.data.data._id);
+      const closeButton = document.getElementsByClassName('btn-close')[0];
+      if (closeButton) {
+        closeButton.click();
+      }
+      // Create the Razorpay order
       const createOrderResponse = await axios.post(
         `${process.env.REACT_APP_API_URL}/users/create-order`,
         { amount: formik.values.amount }
       );
-
+      // Define Razorpay options
       const options = {
         key: "rzp_test_g4ALmVfn2IXdaU",
         amount: formik.values.amount * 100,
@@ -174,8 +138,25 @@ const Explore = () => {
         name: "NGO Donation",
         description: "Thank you for your generous donation",
         order_id: createOrderResponse.data.orderId,
-        handler: function (response) {
-          // Handle successful payment here
+        handler: async function (response) {
+          const paymentDetails = {
+            user_id: localStorage.getItem('userID'),
+            charity_id: localStorage.getItem('charityID'),
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature,
+            amount: formik.values.amount,
+          };
+
+          try {
+            const savePaymentResponse = await axios.post(
+              `${process.env.REACT_APP_API_URL}/users/save-paymet-details`,
+              paymentDetails
+            );
+            navigate("/thank-you");
+          } catch (error) {
+            console.log("Error saving payment details:", error);
+          }
         },
         prefill: {
           name: `${formik.values.firstName} ${formik.values.lastName}`,
@@ -189,13 +170,17 @@ const Explore = () => {
           color: "#3399cc",
         },
       };
+
+      // Initialize Razorpay
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (error) {
       console.log("Error in payment: ", error);
     }
-    formik.handleSubmit();
   };
+  const charityID =(id)=>{
+    localStorage.setItem('charityID',id);
+  }
   return (
     <>
       <section className="explore-sec">
@@ -303,6 +288,7 @@ const Explore = () => {
                               <p>
                                 <div className="cta-btn">
                                   <Link
+                                    onClick={()=>{charityID(ngo._id)}}
                                     className="explore_donate_btn"
                                     to=""
                                     data-bs-toggle="modal"

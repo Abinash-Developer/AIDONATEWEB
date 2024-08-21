@@ -93,7 +93,6 @@ const UserRegister = () => {
     },
     validationSchema: userSignupSchema,
     onSubmit: async (values) => {
-      console.log(values);
       try {
         const response = await axios.post(
           `${process.env.REACT_APP_API_URL}/users/sign_up`,
