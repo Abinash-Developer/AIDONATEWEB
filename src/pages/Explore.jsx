@@ -5,27 +5,40 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { fetchStates } from "../utils/dataFetchers";
 import Thankyou from "./Thankyou";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation  } from "react-router-dom";
+import queryString from 'query-string';
 
 const Explore = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [explore, setExplore] = useState([]);
   const [state, setState] = useState([]);
   const [city, setCity] = useState([]);
 
 
   useEffect(() => {
+    // Get Query parameter
+    const queryParams = queryString.parse(location.search);
+    const priceFilter = queryParams.price || '';
+    const dateFilter = queryParams.date || '';
     // Fetch NGO
-    fetchExplore();
+    fetchExplore(priceFilter,dateFilter);
 
     // Fetch state
     fetchStatesData();
-  }, []);
+  }, [location.search]);
 
   // Fetch NGO Records
-  const fetchExplore = async () => {
+  const fetchExplore = async (priceFilter = '',dateFilter='') => {
     const exploreResponse = await axios.get(
-      `${process.env.REACT_APP_API_URL}/users/get_ngo`
+      `${process.env.REACT_APP_API_URL}/users/get_ngo`,
+      {
+        params: {
+          price: priceFilter,
+          date: dateFilter, // Include date filter
+        },
+      }
+
     );
     setExplore(await exploreResponse?.data?.data);
   };
@@ -181,6 +194,26 @@ const Explore = () => {
   const charityID =(id)=>{
     localStorage.setItem('charityID',id);
   }
+  const handlePriceFilter = (order) => {
+  const queryParams = queryString.parse(location.search);
+  const dateFilter = queryParams.date || '';
+  const newQueryParams = { ...queryParams, price: order };
+  if (dateFilter) {
+    newQueryParams.date = dateFilter;
+  }
+  const newQueryString = queryString.stringify(newQueryParams);
+  navigate(`/explore?${newQueryString}`);
+  };
+  const handleDateFilter = (order)=>{
+  const queryParams = queryString.parse(location.search);
+  const priceFilter = queryParams.price || '';
+  const newQueryParams = { ...queryParams, date: order };
+  if (priceFilter) {
+    newQueryParams.price = priceFilter;
+  }
+  const newQueryString = queryString.stringify(newQueryParams);
+  navigate(`/explore?${newQueryString}`);
+  }
   return (
     <>
       <section className="explore-sec">
@@ -194,17 +227,29 @@ const Explore = () => {
               <div className="explore-head-filter">
                 <div className="explore-head-price-date">
                   <ul>
-                    <li>
+                  <li onClick={() => handlePriceFilter('asc')}>
                       <span>
                         <i className="fa-solid fa-arrow-up" />
                       </span>
-                      Price
+                      Price (Low to High)
                     </li>
-                    <li>
+                    <li onClick={() => handlePriceFilter('desc')}>
                       <span>
                         <i className="fa-solid fa-arrow-down" />
                       </span>
-                      Date
+                      Price (High to Low)
+                    </li>
+                    <li onClick={() => handleDateFilter('asc')}>
+                      <span>
+                        <i className="fa-solid fa-calendar-day" />
+                      </span>
+                      Date (Old to New)
+                    </li>
+                    <li onClick={() => handleDateFilter('desc')}>
+                      <span>
+                        <i className="fa-solid fa-calendar-day" />
+                      </span>
+                      Date (New to Old)
                     </li>
                   </ul>
                   <div className="filter-btn">
@@ -282,7 +327,7 @@ const Explore = () => {
                           </p>
                         </div>
                         <div className="explore-donate">
-                          <div className="explore-donate-bar"></div>
+                          <div className="explore-donate-bar" style={{ "--donation-width": `${ngo.percentage}%` }}></div>
                           <div className="explore-donate-amount-list">
                             <div className="campgin-donate-amount">
                               <p>
@@ -300,7 +345,7 @@ const Explore = () => {
                               </p>
                             </div>
                             <div className="explore-donate-percentage">
-                              <p>75%</p>
+                              <p>{ngo.percentage}%</p>
                             </div>
                           </div>
                         </div>

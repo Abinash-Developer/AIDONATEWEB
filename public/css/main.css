@@ -1047,7 +1047,7 @@ section.sign-account-sec .login-wrapper input.form-control {
     left: 0;
     top: 0;
     height: 4px;
-    width: 75%;
+    width: var(--donation-width, 100%);
     background: #009245;
 }
 .explore-donate-amount-list {
