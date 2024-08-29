@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Campaign = () => {
   return (
     <>
@@ -9,9 +10,9 @@ const Campaign = () => {
               <h2>You Can Help Lots of People by Donating Little</h2>
             </div>
             <div className="campaign-arw-btn">
-              <a className="cta-grn" href="#">
+              <Link className="cta-grn" to="#">
                 <i className="fa-solid fa-arrow-right" />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="campaign-sec-content">
@@ -19,7 +20,7 @@ const Campaign = () => {
               <div className="col-lg-4">
                 <div className="campaign-box">
                   <div className="campaign-img">
-                    <img src="img/camp1.png" />
+                    <img src="img/camp1.png" alt=""/>
                   </div>
                   <div className="campaign-text">
                     <h3>Health response and kids</h3>
@@ -46,7 +47,7 @@ const Campaign = () => {
               <div className="col-lg-4">
                 <div className="campaign-box">
                   <div className="campaign-img">
-                    <img src="img/camp2.png" />
+                    <img src="img/camp2.png"  alt=""/>
                   </div>
                   <div className="campaign-text">
                     <h3>Gift an education…Make a life !</h3>
@@ -73,7 +74,7 @@ const Campaign = () => {
               <div className="col-lg-4">
                 <div className="campaign-box">
                   <div className="campaign-img">
-                    <img src="img/camp3.png" />
+                    <img src="img/camp3.png" alt=""/>
                   </div>
                   <div className="campaign-text">
                     <h3>Emergency response</h3>

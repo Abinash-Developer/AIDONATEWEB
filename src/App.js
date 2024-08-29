@@ -13,6 +13,7 @@ import Otp from "./pages/Otp";
 import ChangePassword from "./pages/ChangePassword";
 import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
+import Myaccount from "./pages/charity/Myaccount";
 // import CommingSoon from "./pages/CommingSoon";
 import PasswordProtect from "./components/PasswordProtect";
 import Thankyou from "./pages/Thankyou";
@@ -37,7 +38,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
             </Route>
             <Route element={<ProtectedRoute requiredRole="ngo" />}>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/ngo/dashboard" element={<Myaccount />} />
             </Route>
             <Route path="*" element={<NoMatch />} />
           </Routes>

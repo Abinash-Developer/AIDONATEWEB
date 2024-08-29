@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 const CategorySection = () => {
   return (
     <>
@@ -20,9 +21,9 @@ const CategorySection = () => {
                     </p>
                   </div>
                   <div className="cta-btn">
-                    <a className="cta-grn" href="#">
+                    <Link className="cta-grn" to="/explore">
                       Donate Now
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -32,7 +33,7 @@ const CategorySection = () => {
                     <div className="col-lg-6">
                       <div className="category-step-box">
                         <div className="category-step-box-img">
-                          <img src="img/cat1.png" />
+                          <img src="img/cat1.png" alt=""/>
                         </div>
                         <h3 className="lgt-hd">Human</h3>
                         <p>
@@ -44,7 +45,7 @@ const CategorySection = () => {
                     <div className="col-lg-6">
                       <div className="category-step-box">
                         <div className="category-step-box-img">
-                          <img src="img/cat2.png" />
+                          <img src="img/cat2.png" alt=""/>
                         </div>
                         <h3 className="lgt-hd">Medicine</h3>
                         <p>
@@ -56,7 +57,7 @@ const CategorySection = () => {
                     <div className="col-lg-6">
                       <div className="category-step-box">
                         <div className="category-step-box-img">
-                          <img src="img/cat3.png" />
+                          <img src="img/cat3.png" alt=""/>
                         </div>
                         <h3 className="lgt-hd">Study</h3>
                         <p>
@@ -68,7 +69,7 @@ const CategorySection = () => {
                     <div className="col-lg-6">
                       <div className="category-step-box">
                         <div className="category-step-box-img">
-                          <img src="img/cat1.png" />
+                          <img src="img/cat1.png" alt=""/>
                         </div>
                         <h3 className="lgt-hd">Food</h3>
                         <p>

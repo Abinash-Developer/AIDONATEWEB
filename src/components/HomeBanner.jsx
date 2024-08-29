@@ -1,6 +1,6 @@
 import React from 'react';
 import CountUp from 'react-countup';
-
+import { Link } from 'react-router-dom';
 const HomeBanner = () => {
   return (
     <>
@@ -23,9 +23,9 @@ const HomeBanner = () => {
                     this opportunity for your non-profit.
                   </p>
                   <div className="cta-btn">
-                    <a className="cta-grn" href="#">
+                    <Link className="cta-grn" to="/explore">
                       Donate Now
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

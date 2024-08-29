@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
@@ -30,19 +31,19 @@ const Footer = () => {
                     <p>Home</p>
                     <ul>
                       <li>
-                        <a href="javascript:void(0)">About Us</a>
+                        <Link href="javascript:void(0)">About Us</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Our Mission</a>
+                        <Link href="javascript:void(0)">Our Mission</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Our Vision</a>
+                        <Link href="javascript:void(0)">Our Vision</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Our Certificates</a>
+                        <Link href="javascript:void(0)">Our Certificates</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Invoice</a>
+                        <Link href="javascript:void(0)">Invoice</Link>
                       </li>
                     </ul>
                   </div>
@@ -52,19 +53,19 @@ const Footer = () => {
                     <p>Explore</p>
                     <ul>
                       <li>
-                        <a href="javascript:void(0)">Lists</a>
+                        <Link href="javascript:void(0)">Lists</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Maps</a>
+                        <Link href="javascript:void(0)">Maps</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Investor Relations</a>
+                        <Link href="javascript:void(0)">Investor Relations</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">AiDonate Circle</a>
+                        <Link href="javascript:void(0)">AiDonate Circle</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">AiDonate Frames</a>
+                        <Link href="javascript:void(0)">AiDonate Frames</Link>
                       </li>
                     </ul>
                   </div>
@@ -74,19 +75,19 @@ const Footer = () => {
                     <p>Media</p>
                     <ul>
                       <li>
-                        <a href="javascript:void(0)">News</a>
+                        <Link href="javascript:void(0)">News</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Events</a>
+                        <Link href="javascript:void(0)">Events</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Gallery</a>
+                        <Link href="javascript:void(0)">Gallery</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Videos</a>
+                        <Link href="javascript:void(0)">Videos</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Alumni Network</a>
+                        <Link href="javascript:void(0)">Alumni Network</Link>
                       </li>
                     </ul>
                   </div>
@@ -96,19 +97,19 @@ const Footer = () => {
                     <p>Documents</p>
                     <ul>
                       <li>
-                        <a href="javascript:void(0)">Privacy Policy</a>
+                        <Link href="javascript:void(0)">Privacy Policy</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Terms and Conditions</a>
+                        <Link href="javascript:void(0)">Terms and Conditions</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Refund Policy</a>
+                        <Link href="javascript:void(0)">Refund Policy</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Safeguarding Policy</a>
+                        <Link href="javascript:void(0)">Safeguarding Policy</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Guest Policies</a>
+                        <Link href="javascript:void(0)">Guest Policies</Link>
                       </li>
                     </ul>
                   </div>
@@ -118,19 +119,19 @@ const Footer = () => {
                     <p>Accountability</p>
                     <ul>
                       <li>
-                        <a href="javascript:void(0)">Financial Statement</a>
+                        <Link href="javascript:void(0)">Financial Statement</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Annual Report</a>
+                        <Link href="javascript:void(0)">Annual Report</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">FCRA Compliance</a>
+                        <Link href="javascript:void(0)">FCRA Compliance</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Compliance</a>
+                        <Link href="javascript:void(0)">Compliance</Link>
                       </li>
                       <li>
-                        <a href="javascript:void(0)">Sources of Fund</a>
+                        <Link href="javascript:void(0)">Sources of Fund</Link>
                       </li>
                     </ul>
                   </div>

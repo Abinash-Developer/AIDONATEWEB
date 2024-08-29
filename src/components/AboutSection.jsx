@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const AboutSection = () => {
   return (
     <>
@@ -8,7 +9,7 @@ const AboutSection = () => {
               <div className="col-lg-6">
                 <div className="about-us-content-left">
                   <div className="about-us-left-img">
-                    <img src="img/about-img.png" className="img-fluid" />
+                    <img src="img/about-img.png" className="img-fluid" alt=""/>
                   </div>
                 </div>
               </div>
@@ -39,9 +40,9 @@ const AboutSection = () => {
                     </div>
                   </div>
                   <div className="cta-btn">
-                    <a className="cta-grn" href="#">
+                    <Link className="cta-grn" to="/explore">
                       Donate Now
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { fetchStates } from "../utils/dataFetchers";
-import Thankyou from "./Thankyou";
-import { useNavigate,useLocation  } from "react-router-dom";
-import queryString from 'query-string';
+import { useNavigate, useLocation } from "react-router-dom";
+import queryString from "query-string";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Explore = () => {
   const navigate = useNavigate();
@@ -14,22 +16,22 @@ const Explore = () => {
   const [explore, setExplore] = useState([]);
   const [state, setState] = useState([]);
   const [city, setCity] = useState([]);
-
+  const [startDate, setStartDate] = useState(null);
 
   useEffect(() => {
     // Get Query parameter
     const queryParams = queryString.parse(location.search);
-    const priceFilter = queryParams.price || '';
-    const dateFilter = queryParams.date || '';
+    const priceFilter = queryParams.price || "";
+    const dateFilter = queryParams.date || "";
     // Fetch NGO
-    fetchExplore(priceFilter,dateFilter);
+    fetchExplore(priceFilter, dateFilter);
 
     // Fetch state
     fetchStatesData();
   }, [location.search]);
 
   // Fetch NGO Records
-  const fetchExplore = async (priceFilter = '',dateFilter='') => {
+  const fetchExplore = async (priceFilter = "", dateFilter = "") => {
     const exploreResponse = await axios.get(
       `${process.env.REACT_APP_API_URL}/users/get_ngo`,
       {
@@ -38,7 +40,6 @@ const Explore = () => {
           date: dateFilter, // Include date filter
         },
       }
-
     );
     setExplore(await exploreResponse?.data?.data);
   };
@@ -126,15 +127,16 @@ const Explore = () => {
   });
   const handleNormalSubmit = async (e) => {
     e.preventDefault();
-   
+
     try {
       // Register the user
       const registerResponse = await axios.post(
         `${process.env.REACT_APP_API_URL}/users/sign_up`,
         formik.values
       );
-      localStorage.setItem('userID',registerResponse.data.data._id);
-      const closeButton = document.getElementsByClassName('btn-close')[0];
+      console.log(registerResponse);
+      localStorage.setItem("userID", registerResponse.data.data._id);
+      const closeButton = document.getElementsByClassName("btn-close")[0];
       if (closeButton) {
         closeButton.click();
       }
@@ -153,8 +155,8 @@ const Explore = () => {
         order_id: createOrderResponse.data.orderId,
         handler: async function (response) {
           const paymentDetails = {
-            user_id: localStorage.getItem('userID'),
-            charity_id: localStorage.getItem('charityID'),
+            user_id: localStorage.getItem("userID"),
+            charity_id: localStorage.getItem("charityID"),
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature,
@@ -162,7 +164,7 @@ const Explore = () => {
           };
 
           try {
-            const savePaymentResponse = await axios.post(
+            await axios.post(
               `${process.env.REACT_APP_API_URL}/users/save-paymet-details`,
               paymentDetails
             );
@@ -188,32 +190,42 @@ const Explore = () => {
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (error) {
-      console.log("Error in payment: ", error);
+      Swal.fire({
+        title: "Error!",
+        text: error.response?.data?.message,
+        icon: "error",
+        confirmButtonText: "Try Again",
+      });
     }
   };
-  const charityID =(id)=>{
-    localStorage.setItem('charityID',id);
-  }
-  const handlePriceFilter = (order) => {
-  const queryParams = queryString.parse(location.search);
-  const dateFilter = queryParams.date || '';
-  const newQueryParams = { ...queryParams, price: order };
-  if (dateFilter) {
-    newQueryParams.date = dateFilter;
-  }
-  const newQueryString = queryString.stringify(newQueryParams);
-  navigate(`/explore?${newQueryString}`);
+  const charityID = (id) => {
+    localStorage.setItem("charityID", id);
   };
-  const handleDateFilter = (order)=>{
-  const queryParams = queryString.parse(location.search);
-  const priceFilter = queryParams.price || '';
-  const newQueryParams = { ...queryParams, date: order };
-  if (priceFilter) {
-    newQueryParams.price = priceFilter;
-  }
-  const newQueryString = queryString.stringify(newQueryParams);
-  navigate(`/explore?${newQueryString}`);
-  }
+  const handlePriceFilter = (order) => {
+    const queryParams = queryString.parse(location.search);
+    const dateFilter = queryParams.date || "";
+    const newQueryParams = { ...queryParams, price: order };
+    if (dateFilter) {
+      newQueryParams.date = dateFilter;
+    }
+    const newQueryString = queryString.stringify(newQueryParams);
+    navigate(`/explore?${newQueryString}`);
+  };
+  const handleDateFilter = (order) => {
+    const date = new Date(order);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const formattedDate = `${year}-${month}-${day}`;
+    const queryParams = queryString.parse(location.search);
+    const priceFilter = queryParams.price || "";
+    const newQueryParams = { ...queryParams, date: formattedDate };
+    if (priceFilter) {
+      newQueryParams.price = priceFilter;
+    }
+    const newQueryString = queryString.stringify(newQueryParams);
+    navigate(`/explore?${newQueryString}`);
+  };
   return (
     <>
       <section className="explore-sec">
@@ -227,29 +239,30 @@ const Explore = () => {
               <div className="explore-head-filter">
                 <div className="explore-head-price-date">
                   <ul>
-                  <li onClick={() => handlePriceFilter('asc')}>
+                    <li onClick={() => handlePriceFilter("asc")}>
                       <span>
                         <i className="fa-solid fa-arrow-up" />
                       </span>
                       Price (Low to High)
                     </li>
-                    <li onClick={() => handlePriceFilter('desc')}>
+                    <li onClick={() => handlePriceFilter("desc")}>
                       <span>
                         <i className="fa-solid fa-arrow-down" />
                       </span>
                       Price (High to Low)
                     </li>
-                    <li onClick={() => handleDateFilter('asc')}>
+                    <li>
                       <span>
                         <i className="fa-solid fa-calendar-day" />
                       </span>
-                      Date (Old to New)
-                    </li>
-                    <li onClick={() => handleDateFilter('desc')}>
-                      <span>
-                        <i className="fa-solid fa-calendar-day" />
-                      </span>
-                      Date (New to Old)
+                      Date
+                      <DatePicker
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        onCalendarClose={() => handleDateFilter(startDate)}
+                        className="date-picker"
+                        placeholderText="Select a date"
+                      />
                     </li>
                   </ul>
                   <div className="filter-btn">
@@ -327,13 +340,18 @@ const Explore = () => {
                           </p>
                         </div>
                         <div className="explore-donate">
-                          <div className="explore-donate-bar" style={{ "--donation-width": `${ngo.percentage}%` }}></div>
+                          <div
+                            className="explore-donate-bar"
+                            style={{ "--donation-width": `${ngo.percentage}%` }}
+                          ></div>
                           <div className="explore-donate-amount-list">
                             <div className="campgin-donate-amount">
                               <p>
                                 <div className="cta-btn">
                                   <Link
-                                    onClick={()=>{charityID(ngo._id)}}
+                                    onClick={() => {
+                                      charityID(ngo._id);
+                                    }}
                                     className="explore_donate_btn"
                                     to=""
                                     data-bs-toggle="modal"

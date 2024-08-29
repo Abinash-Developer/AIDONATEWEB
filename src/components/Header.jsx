@@ -9,7 +9,7 @@ const Header = () => {
         <nav className="navbar navbar-expand-xl navbar-light">
           <div className="container">
             <Link className="navbar-brand" to="/">
-              <img src="img/Logo.png" className="img-fluid" alt="" />
+              <img src="/img/Logo.png" className="img-fluid" alt="" />
             </Link>
             <button
               className="navbar-toggler collapsed"
@@ -59,12 +59,12 @@ const Header = () => {
                     </i>
                   </div>
                   <button className="search-btn">
-                    <img src="img/srch-hrt.png" alt="" />
+                    <img src="/img/srch-hrt.png" alt="" />
                   </button>
                 </li>
                 <li className="user-img">
                   <span className="user-icon-img">
-                    <img src="img/Avatar.png" alt="" />
+                    <img src="/img/Avatar.png" alt="" />
                   </span>
                   <ul className="login-type">
                     {!isAuthenticated ? (

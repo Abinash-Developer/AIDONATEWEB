@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Testimonial = () => {
   return (
     <>
@@ -9,9 +10,9 @@ const Testimonial = () => {
               <h2>What People Say About Us</h2>
             </div>
             <div className="testimonial-arw-btn">
-              <a className="cta-grn" href="#">
+              <Link className="cta-grn" to="/explore">
                 <i className="fa-solid fa-arrow-right" />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="testimonial-sec-content">
@@ -19,7 +20,7 @@ const Testimonial = () => {
               <div className="col-lg-4">
                 <div className="testimonial-box">
                   <div className="testimonial-quote-img">
-                    <img src="img/qut.png" />
+                    <img src="img/qut.png" alt=""/>
                   </div>
                   <div className="testimonial-text">
                     <h3 className="lgt-hd">Kindness</h3>
@@ -32,7 +33,7 @@ const Testimonial = () => {
                   <div className="testimonial-author">
                     <div className="testimonial-author-flx">
                       <div className="campgin-author-img">
-                        <img src="img/test1.png" />
+                        <img src="img/test1.png" alt=""/>
                       </div>
                       <div className="campign-author-name">
                         <h3 className="lgt-hd">John Doe</h3>
@@ -45,7 +46,7 @@ const Testimonial = () => {
               <div className="col-lg-4">
                 <div className="testimonial-box">
                   <div className="testimonial-quote-img">
-                    <img src="img/qut.png" />
+                    <img src="img/qut.png" alt=""/>
                   </div>
                   <div className="testimonial-text">
                     <h3 className="lgt-hd">Humanity</h3>
@@ -58,7 +59,7 @@ const Testimonial = () => {
                   <div className="testimonial-author">
                     <div className="testimonial-author-flx">
                       <div className="campgin-author-img">
-                        <img src="img/test2.png" />
+                        <img src="img/test2.png" alt=""/>
                       </div>
                       <div className="campign-author-name">
                         <h3 className="lgt-hd">Jack Harry</h3>
@@ -71,7 +72,7 @@ const Testimonial = () => {
               <div className="col-lg-4">
                 <div className="testimonial-box">
                   <div className="testimonial-quote-img">
-                    <img src="img/qut.png" />
+                    <img src="img/qut.png" alt=""/>
                   </div>
                   <div className="testimonial-text">
                     <h3 className="lgt-hd">Kindness</h3>
@@ -84,7 +85,7 @@ const Testimonial = () => {
                   <div className="testimonial-author">
                     <div className="testimonial-author-flx">
                       <div className="campgin-author-img">
-                        <img src="img/test3.png" />
+                        <img src="img/test3.png" alt=""/>
                       </div>
                       <div className="campign-author-name">
                         <h3 className="lgt-hd">Sakib Hossain</h3>
