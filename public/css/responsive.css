@@ -89,6 +89,9 @@
     h4 {
         font-size: 20px;
     }
+    h5{
+        font-size: 18px;  
+    }
     .py_100 {
         padding: 60px 0;
     }
@@ -131,6 +134,23 @@
     }
     .account-tab {
         padding-top: 50px;
+    }
+    .myaccount-sec .myaccount-sec-content .my-account-tab {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .myaccount-sec .myaccount-sec-content .nav.nav-pills {
+        position: relative;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    .myaccount-sec .myaccount-sec-content .nav.nav-pills .tab-social-links ul {
+        justify-content: flex-start;
+        gap: 30px;
+    }
+    .myaccount-sec .myaccount-sec-content .tab-content-tab label {
+        margin-bottom: 5px;
     }
 
 }

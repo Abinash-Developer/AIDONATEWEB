@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
@@ -20,7 +20,7 @@ const Forget = () => {
     onSubmit: async (values) => {
       const { email } = values;
       try {
-        const response = await axios.post(
+        await axios.post(
           `${process.env.REACT_APP_API_URL}/api/v1/checkemail`,
           {
             email,

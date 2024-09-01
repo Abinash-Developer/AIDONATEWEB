@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
+    <div className="loading-indicator">
+      <div className="lds-hourglass"></div>
+    </div>
       <footer className="site-ftr pt-100">
         <div className="footer-links">
           <div className="container">
@@ -31,19 +34,19 @@ const Footer = () => {
                     <p>Home</p>
                     <ul>
                       <li>
-                        <Link href="javascript:void(0)">About Us</Link>
+                        <Link to="/">About Us</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Our Mission</Link>
+                        <Link to="/">Our Mission</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Our Vision</Link>
+                        <Link to="/">Our Vision</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Our Certificates</Link>
+                        <Link to="/">Our Certificates</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Invoice</Link>
+                        <Link to="/">Invoice</Link>
                       </li>
                     </ul>
                   </div>
@@ -53,19 +56,19 @@ const Footer = () => {
                     <p>Explore</p>
                     <ul>
                       <li>
-                        <Link href="javascript:void(0)">Lists</Link>
+                        <Link to="/">Lists</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Maps</Link>
+                        <Link to="/">Maps</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Investor Relations</Link>
+                        <Link to="/">Investor Relations</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">AiDonate Circle</Link>
+                        <Link to="/">AiDonate Circle</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">AiDonate Frames</Link>
+                        <Link to="/">AiDonate Frames</Link>
                       </li>
                     </ul>
                   </div>
@@ -75,19 +78,19 @@ const Footer = () => {
                     <p>Media</p>
                     <ul>
                       <li>
-                        <Link href="javascript:void(0)">News</Link>
+                        <Link to="/">News</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Events</Link>
+                        <Link to="/">Events</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Gallery</Link>
+                        <Link to="/">Gallery</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Videos</Link>
+                        <Link to="/">Videos</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Alumni Network</Link>
+                        <Link to="/">Alumni Network</Link>
                       </li>
                     </ul>
                   </div>
@@ -97,19 +100,19 @@ const Footer = () => {
                     <p>Documents</p>
                     <ul>
                       <li>
-                        <Link href="javascript:void(0)">Privacy Policy</Link>
+                        <Link to="/">Privacy Policy</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Terms and Conditions</Link>
+                        <Link to="/">Terms and Conditions</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Refund Policy</Link>
+                        <Link to="/">Refund Policy</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Safeguarding Policy</Link>
+                        <Link to="/">Safeguarding Policy</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Guest Policies</Link>
+                        <Link to="/">Guest Policies</Link>
                       </li>
                     </ul>
                   </div>
@@ -119,19 +122,19 @@ const Footer = () => {
                     <p>Accountability</p>
                     <ul>
                       <li>
-                        <Link href="javascript:void(0)">Financial Statement</Link>
+                        <Link to="/">Financial Statement</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Annual Report</Link>
+                        <Link to="/">Annual Report</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">FCRA Compliance</Link>
+                        <Link to="/">FCRA Compliance</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Compliance</Link>
+                        <Link to="/">Compliance</Link>
                       </li>
                       <li>
-                        <Link href="javascript:void(0)">Sources of Fund</Link>
+                        <Link to="/">Sources of Fund</Link>
                       </li>
                     </ul>
                   </div>
@@ -143,7 +146,7 @@ const Footer = () => {
         <div className="footer-btm">
           <div className="container">
             <div className="cpy-rt">
-              <img src="img/ftr-logo.png" />
+              <img src="img/ftr-logo.png" alt=""/>
               <p>Copyright © 2023-2024 AiDonate. All Rights Reserved</p>
             </div>
           </div>

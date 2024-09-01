@@ -10,24 +10,33 @@ const AuthProvider = ({ children }) => {
   const [userRole, setUserRole] = useState(()=>{
     return localStorage.getItem("role") || '';
   });
+  const [userID, setUserID] = useState(()=>{
+    return localStorage.getItem("userID") || '';
+  });
   const login = (user_details) => {
     localStorage.setItem("logged_in",true);
     localStorage.setItem("role", user_details?.data?.data?.role);
     localStorage.setItem("token", user_details?.data?.token);
+    localStorage.setItem("userID", user_details?.data?.data?._id);
     setIsAuthenticated(true);
+    setUserRole(localStorage.getItem('role'))
+    setUserID(localStorage.getItem('userID'))
   };
 
   const logout = () => {
     localStorage.removeItem("logged_in");
     localStorage.removeItem("role");
     localStorage.removeItem("token");
+    localStorage.removeItem("userID");
     setIsAuthenticated(false);
+    setUserRole('');
+    setUserID('');
     return <Navigate to="/" />;
 
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, userRole, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, userRole,userID,login, logout }}>
       {children}
     </AuthContext.Provider>
   );

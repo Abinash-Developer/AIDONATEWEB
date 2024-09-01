@@ -1,23 +1,23 @@
-jQuery(window).scroll(function(){
-    if (jQuery(this).scrollTop() > 350) {
-        jQuery('.hearder_wrapper').addClass('sticky-head');
+$(window).scroll(function(){
+    if ($(this).scrollTop() > 350) {
+        $('.hearder_wrapper').addClass('sticky-head');
     } else {
-        jQuery('.hearder_wrapper').removeClass('sticky-head');
+        $('.hearder_wrapper').removeClass('sticky-head');
     }
 });
 
-jQuery(document).ready(function () {
-    jQuery('input[name="intervaltype"]').click(function () {
-        jQuery(this).tab('show');
-        jQuery(this).removeClass('active');
+$(document).ready(function () {
+    $('input[name="intervaltype"]').click(function () {
+        $(this).tab('show');
+        $(this).removeClass('active');
     });
-    jQuery('.user-img').click(function() {
-        jQuery(this).toggleClass('active');
-        jQuery('.login-type').toggle();
-    });
-  })
 
-  
+
+  jQuery('.user-img').click(function() {
+    jQuery(this).toggleClass('active');
+    jQuery('.login-type').toggle();
+});
+});
   
 
 

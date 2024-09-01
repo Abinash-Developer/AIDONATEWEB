@@ -13,8 +13,6 @@ import Otp from "./pages/Otp";
 import ChangePassword from "./pages/ChangePassword";
 import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
-import Myaccount from "./pages/charity/Myaccount";
-// import CommingSoon from "./pages/CommingSoon";
 import PasswordProtect from "./components/PasswordProtect";
 import Thankyou from "./pages/Thankyou";
 
@@ -34,11 +32,12 @@ function App() {
             <Route path="/forgot-password" element={<Forget />} />
             <Route path="/varify-otp" element={<Otp />} />
             <Route path="/change-password" element={<ChangePassword />} />
+            <Route path="/dashboard" element={<Dashboard />} /> 
             <Route element={<ProtectedRoute requiredRole="user" />}>
-              <Route path="/dashboard" element={<Dashboard />} />
+              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
             </Route>
             <Route element={<ProtectedRoute requiredRole="ngo" />}>
-              <Route path="/ngo/dashboard" element={<Myaccount />} />
+              {/* <Route path="/dashboard" element={<Myaccount />} /> */}
             </Route>
             <Route path="*" element={<NoMatch />} />
           </Routes>

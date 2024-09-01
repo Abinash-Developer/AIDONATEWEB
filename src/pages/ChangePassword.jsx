@@ -31,7 +31,7 @@ const ChangePassword = () => {
       const { newPassword } = values;
       const userId = localStorage.getItem('otp_user');
       try {
-        const response = await axios.post(
+         await axios.post(
           `${process.env.REACT_APP_API_URL}/api/v1/change-password`,
           { userId, newPassword }
         );

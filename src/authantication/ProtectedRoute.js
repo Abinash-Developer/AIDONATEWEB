@@ -7,10 +7,8 @@ const ProtectedRoute = ({ requiredRole }) => {
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
-
+  console.log("requiredRole =",requiredRole)
   if (isAuthenticated && userRole !== requiredRole) {
-    console.log("isAuthenticated = ",isAuthenticated);
-    console.log("userRole = ",userRole);
     return <Navigate to="/" />;
   }
 

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../authantication/AuthProvider";
 const Header = () => {
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { userRole,isAuthenticated, logout } = useContext(AuthContext);
   return (
     <>
       <header className="hearder_wrapper">
@@ -58,9 +58,13 @@ const Header = () => {
                       <span>Search</span>
                     </i>
                   </div>
-                  <button className="search-btn">
-                    <img src="/img/srch-hrt.png" alt="" />
-                  </button>
+                  {
+                      isAuthenticated && userRole === 'user' && (
+                        <button className="search-btn">
+                          <img src="/img/srch-hrt.png" alt="Search" />
+                        </button>
+                      )
+                    }
                 </li>
                 <li className="user-img">
                   <span className="user-icon-img">
@@ -78,6 +82,11 @@ const Header = () => {
                       </>
                     ) : (
                       <>
+                        <li>
+                          <Link to="/dashboard">
+                            My Account
+                          </Link>
+                        </li>
                         <li>
                           <Link to="#" onClick={logout}>
                             Sign Out
