@@ -7,22 +7,32 @@ import queryString from "query-string";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../authantication/AuthProvider";
+import { checkWishList } from "../utils/dataFetchers";
 
 const Explore = () => {
-  const { userRole, isAuthenticated } = useContext(AuthContext);
+  const { userRole, isAuthenticated, userID } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [explore, setExplore] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [amount, setAmount] = useState("");
+  const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
-    // Get Query parameter
-    const queryParams = queryString.parse(location.search);
-    const priceFilter = queryParams.price || "";
-    const dateFilter = queryParams.date || "";
-    // Fetch NGO
-    fetchExplore(priceFilter, dateFilter);
+    const fetchData = async () => {
+      // Get Query parameters
+      const queryParams = queryString.parse(location.search);
+      const priceFilter = queryParams.price || "";
+      const dateFilter = queryParams.date || "";
+      try {
+        // fetchWishlist();
+          fetchExplore(priceFilter, dateFilter);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData(); 
   }, [location.search]);
 
   // Fetch NGO Records
@@ -36,7 +46,15 @@ const Explore = () => {
         },
       }
     );
-    setExplore(await exploreResponse?.data?.data);
+    const exploreResult = await exploreResponse?.data?.data;
+    exploreResult.forEach((val) => {
+      if (userID) {
+        checkWishList(val._id).then((res)=>{
+            val.wishlist = res;
+        })
+      }
+    });
+    setExplore(exploreResult);
   };
   // Validation for user payment with register
   const handleNormalSubmit = async (e) => {
@@ -163,8 +181,9 @@ const Explore = () => {
     navigate(`/explore?${newQueryString}`);
   };
 
+  //Handel Wishlist
   const handleAddToWishlist = async (ngoId) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     try {
       await axios.get(
         `${process.env.REACT_APP_API_URL}/users/add-to-wishlist/${ngoId}`,
@@ -175,20 +194,24 @@ const Explore = () => {
         }
       );
       Swal.fire({
-        title: 'Success!',
-        text: 'Added to wishlist',
-        icon: 'success',
-        confirmButtonText: 'OK',
+        title: "Success!",
+        text: "Added to wishlist",
+        icon: "success",
+        confirmButtonText: "OK",
       });
     } catch (error) {
       Swal.fire({
-        title: 'Error!',
-        text: 'Failed to add to wishlist',
-        icon: 'error',
-        confirmButtonText: 'Try Again',
+        title: "Error!",
+        text: "Failed to add to wishlist",
+        icon: "error",
+        confirmButtonText: "Try Again",
       });
     }
   };
+
+  const handleRemoveToWishlist = (wishlistID)=>{
+    console.log(wishlistID)
+  }
   return (
     <>
       <section className="explore-sec">
@@ -282,8 +305,23 @@ const Explore = () => {
                             <div className="explore-img-icon-i">
                               <i className="fa-solid fa-arrow-up-from-bracket" />
                             </div>
-                            <div className="explore-img-icon-i" >
-                              <i className="fa-regular fa-heart" onClick={() => handleAddToWishlist(ngo._id)}/>
+                            <div className="explore-img-icon-i">
+                            {isAuthenticated ? (
+                                ngo.wishlist ==true? (
+                                  <i
+                                    className="fa-solid fa-heart"
+                                    onClick={() => handleAddToWishlist(ngo._id)}
+                                  />
+                                ) : (
+                                  <i
+                                    className="fa-regular fa-heart"
+                                    onClick={() => handleRemoveToWishlist(ngo._id)}
+                                  />
+                                )
+                              ) : (
+                                <Link to="/login"><i className="fa-regular fa-heart" /></Link>
+                              )}
+                             
                             </div>
                           </div>
                         </div>

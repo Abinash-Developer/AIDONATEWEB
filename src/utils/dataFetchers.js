@@ -27,3 +27,24 @@ export async function fetchStates() {
     throw new Error('An error occurred while fetching cities');
   }
 }
+
+export async function checkWishList(ngoID) {
+  try {
+    const wishlistResponse = await axios.get(
+      `${process.env.REACT_APP_API_URL}/users/fetch-wishlist-ByID/${ngoID}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
+    if(await wishlistResponse.data.data!=null){
+      return true;
+    }else{
+      return false;
+    }
+  } catch (error) {
+    console.error('Error fetching cities:', error);
+    throw new Error('An error occurred while fetching cities');
+  }
+}
