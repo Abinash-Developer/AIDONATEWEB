@@ -7,7 +7,6 @@ import queryString from "query-string";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../authantication/AuthProvider";
-import { checkWishList } from "../utils/dataFetchers";
 
 const Explore = () => {
   const { userRole, isAuthenticated, userID } = useContext(AuthContext);
@@ -16,10 +15,9 @@ const Explore = () => {
   const [explore, setExplore] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [amount, setAmount] = useState("");
-  const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    // const fetchData = async () => {
       // Get Query parameters
       const queryParams = queryString.parse(location.search);
       const priceFilter = queryParams.price || "";
@@ -30,32 +28,63 @@ const Explore = () => {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-    };
-
-    fetchData(); 
-  }, [location.search]);
+    // };
+    // fetchData(); 
+  },[]);
 
   // Fetch NGO Records
   const fetchExplore = async (priceFilter = "", dateFilter = "") => {
-    const exploreResponse = await axios.get(
-      `${process.env.REACT_APP_API_URL}/users/get_ngo`,
-      {
-        params: {
-          price: priceFilter,
-          date: dateFilter, // Include date filter
-        },
-      }
-    );
-    const exploreResult = await exploreResponse?.data?.data;
-    exploreResult.forEach((val) => {
+    try {
+      const exploreResponse = await axios.get(
+        `${process.env.REACT_APP_API_URL}/users/get_ngo`,
+        {
+          params: {
+            price: priceFilter,
+            date: dateFilter,
+          },
+        }
+      );
+  
+      const exploreResult = exploreResponse?.data?.data;
+      const token = localStorage.getItem("token");
+  
       if (userID) {
-        checkWishList(val._id).then((res)=>{
-            val.wishlist = res;
-        })
+        const exploreWithWishlist = await Promise.all(
+          exploreResult.map(async (ngo) => {
+            const registerResponse = await axios.get(
+              `${process.env.REACT_APP_API_URL}/users/fetch-wishlist-ByID/${ngo._id}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+            ngo.wishlist = registerResponse.data.data ? 1 : 0;
+            return ngo;
+          })
+        );
+        console.log("exploreWithWishlist =", exploreWithWishlist);
+        setExplore(exploreWithWishlist);
+      } else {
+        // Set exploreResult with default wishlist value for unauthenticated users
+        const exploreWithoutWishlist = exploreResult.map((ngo) => {
+          ngo.wishlist = 0;
+          return ngo;
+        });
+        console.log("exploreWithoutWishlist =", exploreWithoutWishlist);
+        setExplore(exploreWithoutWishlist);
       }
-    });
-    setExplore(exploreResult);
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "Server not started yet !!",
+        icon: "error",
+        confirmButtonText: "Okay",
+      });
+    }
   };
+  
+ 
   // Validation for user payment with register
   const handleNormalSubmit = async (e) => {
     e.preventDefault();
@@ -199,6 +228,10 @@ const Explore = () => {
         icon: "success",
         confirmButtonText: "OK",
       });
+      const queryParams = queryString.parse(location.search);
+      const priceFilter = queryParams.price || "";
+      const dateFilter = queryParams.date || "";
+      fetchExplore(priceFilter, dateFilter);
     } catch (error) {
       Swal.fire({
         title: "Error!",
@@ -212,6 +245,7 @@ const Explore = () => {
   const handleRemoveToWishlist = (wishlistID)=>{
     console.log(wishlistID)
   }
+
   return (
     <>
       <section className="explore-sec">
@@ -305,22 +339,27 @@ const Explore = () => {
                             <div className="explore-img-icon-i">
                               <i className="fa-solid fa-arrow-up-from-bracket" />
                             </div>
-                            <div className="explore-img-icon-i">
-                            {isAuthenticated ? (
-                                ngo.wishlist ==true? (
+                            <div className="explore-img-icon-i" id={ngo.wishlist === 1?'Active':'Inactive'}>
+                              
+                           {isAuthenticated && ngo.wishlist === 1 &&(
                                   <i
                                     className="fa-solid fa-heart"
-                                    onClick={() => handleAddToWishlist(ngo._id)}
                                   />
-                                ) : (
+                           )
+                                  }
+                             {isAuthenticated && ngo.wishlist === 0 &&(
                                   <i
                                     className="fa-regular fa-heart"
-                                    onClick={() => handleRemoveToWishlist(ngo._id)}
+                                    onClick={() => handleAddToWishlist(ngo._id)}
                                   />
-                                )
-                              ) : (
-                                <Link to="/login"><i className="fa-regular fa-heart" /></Link>
-                              )}
+                           )
+                            }
+                            {!isAuthenticated &&(
+                                  <i
+                                    className="fa-regular fa-heart"
+                                  />
+                           )
+                            }
                              
                             </div>
                           </div>
