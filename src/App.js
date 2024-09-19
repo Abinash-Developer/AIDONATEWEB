@@ -15,6 +15,7 @@ import Explore from "./pages/Explore";
 import Dashboard from "./pages/Dashboard";
 import PasswordProtect from "./components/PasswordProtect";
 import Thankyou from "./pages/Thankyou";
+import Wishlist from "./pages/Wishlist";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/varify-otp" element={<Otp />} />
             <Route path="/change-password" element={<ChangePassword />} />
             <Route path="/dashboard" element={<Dashboard />} /> 
+            <Route path="/wishlist" element={<Wishlist />} /> 
             <Route element={<ProtectedRoute requiredRole="user" />}>
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
             </Route>

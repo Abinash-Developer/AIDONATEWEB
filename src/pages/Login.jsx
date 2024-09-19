@@ -1,10 +1,12 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AuthContext } from "../authantication/AuthProvider";
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
   const navigate = useNavigate();
   const { login, isAuthenticated } = useContext(AuthContext);
@@ -29,6 +31,7 @@ const Login = () => {
     },
     validationSchema,
     onSubmit: async (values) => {
+      
       const { email, password } = values;
       try {
         const response = await axios.post(
@@ -88,8 +91,11 @@ const Login = () => {
                   <div className="pass-content">
                     <label>Password</label>
                   </div>
-                   <div className="pass-img" onClick={togglePasswordVisibility}>
-                    <img src={showPassword ? "img/hide.png" : "img/hide.png"} alt="" />
+                  <div className="pass-img" onClick={togglePasswordVisibility}>
+                    <img
+                      src={showPassword ? "img/hide.png" : "img/hide.png"}
+                      alt=""
+                    />
                     <span>{showPassword ? "Hide" : "Show"}</span>
                   </div>
                 </div>
@@ -107,7 +113,7 @@ const Login = () => {
               </div>
               <div className="form-group">
                 {/* <span data-bs-toggle="modal" data-bs-target="#exampleModal"> */}
-                 <Link to ="/forgot-password">Forget your password</Link>
+                <Link to="/forgot-password">Forget your password</Link>
                 {/* </span> */}
               </div>
               <div className="checkbox_box">
@@ -146,6 +152,7 @@ const Login = () => {
               <div className="btn-play">
                 <Link to="/register">Sign up</Link>
               </div>
+              <ToastContainer />
             </form>
           </div>
         </div>

@@ -88,6 +88,11 @@ const Header = () => {
                           </Link>
                         </li>
                         <li>
+                          <Link to="/wishlist">
+                            My Wishlist
+                          </Link>
+                        </li>
+                        <li>
                           <Link to="#" onClick={logout}>
                             Sign Out
                           </Link>
